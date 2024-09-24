@@ -13,19 +13,15 @@ BEGIN
     END IF;
 END $$;
 
--- Create the Resource table with a one-to-many relationship to Scan, if it does not exist
+-- Create the Resource table with a composite primary key (scan_id, urn)
 CREATE TABLE IF NOT EXISTS resources (
-    id SERIAL PRIMARY KEY,
     scan_id INT REFERENCES scans(id) ON DELETE CASCADE,
     urn VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     type resource_type NOT NULL,
     data JSONB,
-    UNIQUE (scan_id, urn)
+    PRIMARY KEY (scan_id, urn)
 );
-
--- Create a combined index on urn and scan_id
-CREATE INDEX IF NOT EXISTS idx_resources_urn_scanid ON resources(urn, scan_id);
 
 -- Create additional indexes if they do not exist
 CREATE INDEX IF NOT EXISTS idx_scans_start ON scans(start);
