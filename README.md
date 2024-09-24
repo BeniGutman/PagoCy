@@ -14,8 +14,8 @@ Make sure you have Docker and Docker Compose installed on your machine.
 ### 1. Clone the repository or download the `docker-compose.yml` file.
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/BeniGutman/PagoCy.git
+cd PagoCy
 ```
 
 ---
