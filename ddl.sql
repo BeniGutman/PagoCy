@@ -15,10 +15,11 @@ END $$;
 
 -- Create the Resource table with a composite primary key (scan_id, urn)
 CREATE TABLE IF NOT EXISTS resources (
-    scan_id INT REFERENCES scans(id) ON DELETE CASCADE,
+    scan_id INT REFERENCES scans(id) ON DELETE CASCADE NOT NULL,
     urn VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     type resource_type NOT NULL,
+    date_fetched TIMESTAMP NOT NULL,
     data JSONB,
     PRIMARY KEY (scan_id, urn)
 );
